@@ -16,14 +16,21 @@ class BaseModel():
             attr3 (update_at): control de ptade datetime
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Validate values
 
         """
-        self.id = str(uuid4())
-        self.create_at = datetime.now()
-        self.update_at = datetime.now()
+        if (kwargs):
+            for key, value in kwargs.items():
+                if (key is not '__class__'):
+                    if (key is 'created_at' or key is 'updated_at'):
+                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """
@@ -44,7 +51,7 @@ class BaseModel():
         """
         new_d = self.__dict__.copy()
         new_d["__class__"] = __class__.__name__
-        new_d['create_at'] = self.create_at.isoformat()
-        new_d['update_at'] = self.update_at.isoformat()
+        new_d['created_at'] = self.created_at.isoformat()
+        new_d['updated_at'] = self.updated_at.isoformat()
 
         return new_d
