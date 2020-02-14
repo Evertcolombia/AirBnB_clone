@@ -23,7 +23,7 @@ class BaseModel():
         """
         self.id = str(uuid4())
         self.create_at = datetime.now()
-        self.updat_at = datetime.now()
+        self.update_at = datetime.now()
 
     def __str__(self):
         """
@@ -43,9 +43,9 @@ class BaseModel():
             return a dictionary representation of de obj inctance
         """
         new_d = self.__dict__.copy()
-        a = {'__class__': __class__.__name__}
-        new_d.update(a)
-        new_d['created_at'] = self.create_at.isoformat()
+        a  = '__class__'
+        new_d[a] = __class__.__name__
+        new_d['create_at'] = self.create_at.isoformat()
         new_d['update_at'] = self.update_at.isoformat()
 
         return new_d
