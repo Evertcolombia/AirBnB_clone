@@ -29,7 +29,7 @@ class BaseModel():
                         val = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                         setattr(self, key, val)
                 elif (key != '__class__'):
-                    setattr(self, key, val)
+                    setattr(self, key, value)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()

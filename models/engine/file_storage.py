@@ -8,8 +8,8 @@ class FileStorage():
     """
         Prvate class attributes
     """
-    __file_path = "file.json" #path to the json file
-    __objects = {} # will store all objects by class_name.id
+    __file_path = "file.json"
+    __objects = {}
 
     """
         Public class attributes and methods
@@ -36,20 +36,19 @@ class FileStorage():
             for key, value in FileStorage.__objects.items():
                 dict_cp[key] = value.to_dict()
             f.write(json.dumps(dict_cp))
-        """dict_cp = {}
-       
-        for k, v in FileStorage.__objects.items():
-            dict_cp[k] = v.to_dict()
-            print("pasa")
-	
-        print(BaseModel)
-        with open(self.__file_path, 'w', encoding='utf-8') as f:
-            f.write(json.dumps(dict_cp))
-        #print(dict_cp)"""
-	
 
     def reload(self):
         """
-            deserializes the JSON fle to __objects (only if the JSON f            ile (__file_path) exists ; otherwise, do nothing. If the f            ile does not exist, no exception should be raised)
+            deserializes the JSON fle to __objects (only if the JSON
+            file)
         """
-        pass
+        try:
+            with open(self.__file_path, 'r', encoding='UTF-8') as f:
+                old_dict = f.read()
+                list_dict = json.loads(old_dict)
+
+                for key, value in list_dict.items():
+                    x = BaseModel(**value)
+                    self.__objects[key] = x
+        except IOError:
+            return
