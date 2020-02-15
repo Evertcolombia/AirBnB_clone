@@ -24,10 +24,12 @@ class BaseModel():
         """
         if (kwargs):
             for key, value in kwargs.items():
-                if (key is not '__class__'):
-                    if (key is 'created_at' or key is 'updated_at'):
-                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                    setattr(self, key, value)
+              #  if (key != '__class__'):
+                if (key == 'created_at' or key == 'updated_at'):
+                        val = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        setattr(self, key, val)
+                elif (key != '__class__'):
+                    setattr(self, key, val)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -45,7 +47,7 @@ class BaseModel():
         """
             update the instance update_at
         """
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
@@ -54,7 +56,7 @@ class BaseModel():
         """
         new_d = self.__dict__.copy()
         new_d["__class__"] = __class__.__name__
-        new_d['created_at'] = self.created_at.isoformat()
-        new_d['updated_at'] = self.updated_at.isoformat()
+        new_d['created_at'] = self.created_at.isoformat('T')
+        new_d['updated_at'] = self.updated_at.isoformat('T')
 
         return new_d
