@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import json
-from models.base_model import BaseModel
+#from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -32,15 +32,12 @@ class FileStorage():
         """
         dict_cp = {}
        
-        for k, v in FileStorage.__objects.items():
+        for k, v in self.__objects.items():
             dict_cp[k] = v.to_dict()
             print("pasa")
-	
-        print(BaseModel)
+
         with open(self.__file_path, 'w', encoding='utf-8') as f:
             f.write(json.dumps(dict_cp))
-        #print(dict_cp)
-	
 
     def reload(self):
         """
