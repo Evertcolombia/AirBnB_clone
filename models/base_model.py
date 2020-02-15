@@ -5,6 +5,7 @@ This is module define the base class (super class)
 
 from datetime import datetime
 from uuid import uuid4
+from models import storage
 
 
 class BaseModel():
