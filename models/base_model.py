@@ -49,6 +49,7 @@ class BaseModel():
         """
         self.updated_at = datetime.now()
         models.storage.save()
+        print("pasa")
 
     def to_dict(self):
         """

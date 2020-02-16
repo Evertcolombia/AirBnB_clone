@@ -4,13 +4,15 @@ This is module define the Cmd class for command line in python
 """
 
 import cmd
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
     """
         Class  HBNBCommand
         command line for A&B project
-    """"
+    """
 
     prompt = '(hbnb) '
 
@@ -30,6 +32,24 @@ class HBNBCommand(cmd.Cmd):
         """
         print("^D")
         return True
+
+    def do_create(self, arg):
+        """
+            create a new intance of base model and 
+            saves it in the file.json
+        """
+        if arg and  arg == "BaseModel":
+            cl_name = eval(arg + '()')
+            cl_name.save()
+        elif not arg:
+            print("** class name missing **")
+        else:
+            print("** class doesn't exist **")
+
+
+    def help_create(self):
+        print("-- Sintax: create class_name")
+        print("creat a and save instance for BaseModel")
 
     def help_EOF(self):
         """
