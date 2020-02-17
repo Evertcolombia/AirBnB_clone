@@ -72,7 +72,6 @@ class HBNBCommand(cmd.Cmd):
             the class and id of the instance
         """
         arg_list = arg.split()
-        len_list = len(arg_list)
 
         if validate(arg_list) == 1:
             obj = arg_list[0] + '.' + arg_list[1]
@@ -84,7 +83,26 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
                 return
-                
+
+    def do_destroy(self, arg):
+        """
+            destroy a object from a dict wit the instances
+            of the data application
+        """
+        arg_list = arg.split()
+
+        if validate(arg_list) == 1:
+            obj = arg_list[0] + '.' + arg_list[1]
+            all_instances = storage.all()
+
+            if obj in all_instances.keys():
+                del all_instances[obj]
+                print("deleted")
+                storage.save()
+            else:
+                print("** no instance found **")
+                return
+
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
