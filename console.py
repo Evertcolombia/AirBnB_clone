@@ -67,8 +67,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-<<<<<<< HEAD
-=======
     def do_show(self, arg):
         """
             show an intance if exist when the user type
@@ -121,9 +119,7 @@ class HBNBCommand(cmd.Cmd):
             print(list)
         else:
             print("** class doesn't exist **")
-       
 
->>>>>>> conole_uptade
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
