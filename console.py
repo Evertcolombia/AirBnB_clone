@@ -6,6 +6,7 @@ This is module define the Cmd class for command line in python
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import json
 
 def validate(list_args):
     if list:
@@ -103,6 +104,23 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
+    def do_all(self, arg):
+        """
+            show all the instances in total or the one class
+            in specific
+        """
+        all_instances = storage.all()
+
+        if len(arg) == 0 or arg == "BaseModel":
+            list = []
+
+            for key in all_instances:
+                list.append(str(storage.all()[key]))
+            print(list)
+        else:
+            print("** class doesn't exist **")
+       
+
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
@@ -114,6 +132,10 @@ class HBNBCommand(cmd.Cmd):
     def help_destroy(self):
         print("-- Sintax: destroy class_name id_instance")
         print("destroy and instance from a class instances")
+
+    def help_all(self):
+        print("-- Sintax: all class_name or all")
+        print("show all the instances from a class or total")
 
     def help_EOF(self):
         """
