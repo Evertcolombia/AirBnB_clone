@@ -5,8 +5,26 @@ This is module define the Cmd class for command line in python
 
 import cmd
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models import storage
+import json
 
+def validate(list_args):
+    if list:
+        len_list = len(list_args)
+
+        if len_list < 1:
+            print("** class name missing **")
+            return 
+
+        if list_args[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return 
+
+        if len_list < 2:
+            print("** instance id missing **")
+            return
+        return 1
+        
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -40,16 +58,87 @@ class HBNBCommand(cmd.Cmd):
         """
         if arg and  arg == "BaseModel":
             cl_name = eval(arg + '()')
-            cl_name.save()
             print(cl_name.id)
+            cl_name.save()
+
         elif not arg:
             print("** class name missing **")
+
         else:
             print("** class doesn't exist **")
 
+<<<<<<< HEAD
+=======
+    def do_show(self, arg):
+        """
+            show an intance if exist when the user type
+            the class and id of the instance
+        """
+        arg_list = arg.split()
+
+        if validate(arg_list) == 1:
+            obj = arg_list[0] + '.' + arg_list[1]
+            all_instances = storage.all()       
+
+            if obj  in all_instances.keys():
+                reference = all_instances[obj]
+                print(reference)
+            else:
+                print("** no instance found **")
+                return
+
+    def do_destroy(self, arg):
+        """
+            destroy a object from a dict wit the instances
+            of the data application
+        """
+        arg_list = arg.split()
+
+        if validate(arg_list) == 1:
+            obj = arg_list[0] + '.' + arg_list[1]
+            all_instances = storage.all()
+
+            if obj in all_instances.keys():
+                del all_instances[obj]
+                print("deleted")
+                storage.save()
+            else:
+                print("** no instance found **")
+                return
+
+    def do_all(self, arg):
+        """
+            show all the instances in total or the one class
+            in specific
+        """
+        all_instances = storage.all()
+
+        if len(arg) == 0 or arg == "BaseModel":
+            list = []
+
+            for key in all_instances:
+                list.append(str(storage.all()[key]))
+            print(list)
+        else:
+            print("** class doesn't exist **")
+       
+
+>>>>>>> conole_uptade
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
+
+    def help_show(self):
+        print("-- Sintax: show class_name id_instance")
+        print("show an nstance from a class with the id")
+
+    def help_destroy(self):
+        print("-- Sintax: destroy class_name id_instance")
+        print("destroy and instance from a class instances")
+
+    def help_all(self):
+        print("-- Sintax: all class_name or all")
+        print("show all the instances from a class or total")
 
     def help_EOF(self):
         """
