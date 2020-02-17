@@ -5,8 +5,25 @@ This is module define the Cmd class for command line in python
 
 import cmd
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models import storage
 
+def validate(list_args):
+    if list:
+        len_list = len(list_args)
+
+        if len_list < 1:
+            print("** class name missing **")
+            return 
+
+        if list_args[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return 
+
+        if len_list < 2:
+            print("** instance id missing **")
+            return
+        return 1
+        
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -50,23 +67,24 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, arg):
-        str = arg.split()
-        print(str)
-        print(str[0])
-        """get the len the split arg"""
-        """if the len s less to 1 print clas missing and return"""
-        """ if the index 0 of the split line is not in allow class"""             """print clas does not exist and return """
-        """ if len of splted line is less 2 pr id missin and retur """
-        """get all the instances from the file storage """
-        """ get and obje reference using the splited[0] and[1] with a . in the half"""
+        """
+            show an intance if exist when the user type
+            the class and id of the instance
+        """
+        arg_list = arg.split()
+        len_list = len(arg_list)
 
-        """if the object reference is in the nstances.keys()"""
-        """print the dict in the intancess passing obj reference a
-s key"""
-        """else print not instance found """
+        if validate(arg_list) == 1:
+            obj = arg_list[0] + '.' + arg_list[1]
+            all_instances = storage.all()       
 
+            if obj  in all_instances.keys():
+                reference = all_instances[obj]
+                print(reference)
+            else:
+                print("** no instance found **")
+                return
                 
-
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
