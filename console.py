@@ -47,15 +47,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_show(self, arg):
-        str = arg.split()
-
-        if len(str) == 2:
-            if str[0] == "BaseModel":
-                if int(str[1]):
-                   """look for the id in the dicionaries"""
-                
-
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
