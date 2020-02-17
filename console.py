@@ -40,20 +40,31 @@ class HBNBCommand(cmd.Cmd):
         """
         if arg and  arg == "BaseModel":
             cl_name = eval(arg + '()')
-            cl_name.save()
             print(cl_name.id)
+            cl_name.save()
+
         elif not arg:
             print("** class name missing **")
+
         else:
             print("** class doesn't exist **")
 
     def do_show(self, arg):
         str = arg.split()
+        print(str)
+        print(str[0])
+        """get the len the split arg"""
+        """if the len s less to 1 print clas missing and return"""
+        """ if the index 0 of the split line is not in allow class"""             """print clas does not exist and return """
+        """ if len of splted line is less 2 pr id missin and retur """
+        """get all the instances from the file storage """
+        """ get and obje reference using the splited[0] and[1] with a . in the half"""
 
-        if len(str) == 2:
-            if str[0] == "BaseModel":
-                if int(str[1]):
-                   """look for the id in the dicionaries"""
+        """if the object reference is in the nstances.keys()"""
+        """print the dict in the intancess passing obj reference a
+s key"""
+        """else print not instance found """
+
                 
 
     def help_create(self):

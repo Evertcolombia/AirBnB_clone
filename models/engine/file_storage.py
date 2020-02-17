@@ -48,7 +48,7 @@ class FileStorage():
                 list_dict = json.loads(old_dict)
 
                 for key, value in list_dict.items():
-                    x = eval("BaseModel(**value)")
+                    x = eval("BaseModel")(**value)
                     self.__objects[key] = x
         except IOError:
-            return
+           pass
