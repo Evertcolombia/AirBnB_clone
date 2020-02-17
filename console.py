@@ -107,6 +107,14 @@ class HBNBCommand(cmd.Cmd):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
 
+    def help_show(self):
+        print("-- Sintax: show class_name id_instance")
+        print("show an nstance from a class with the id")
+
+    def help_destroy(self):
+        print("-- Sintax: destroy class_name id_instance")
+        print("destroy and instance from a class instances")
+
     def help_EOF(self):
         """
             help command to  end of file
