@@ -9,17 +9,18 @@ from models.base_model import BaseModel
 from models import storage
 import json
 
+
 def validate(list_args):
     if list:
         len_list = len(list_args)
 
         if len_list < 1:
             print("** class name missing **")
-            return 
+            return
 
         if list_args[0] != "BaseModel":
             print("** class doesn't exist **")
-            return 
+            return
 
         if len_list < 2:
             print("** instance id missing **")
@@ -27,7 +28,7 @@ def validate(list_args):
 
         obj_reference = list_args[0] + '.' + list_args[1]
         return obj_reference
-        
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -56,10 +57,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """
-            create a new intance of base model and 
+            create a new intance of base model and
             saves it in the file.json
         """
-        if arg and  arg == "BaseModel":
+        if arg and arg == "BaseModel":
             cl_name = eval(arg + '()')
             print(cl_name.id)
             cl_name.save()
@@ -80,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
 
         if validate(arg_list):
             obj_refer = validate(arg_list)
-            all_instances = storage.all()       
+            all_instances = storage.all()
 
             if obj_refer in all_instances.keys():
                 reference = all_instances[obj_refer]
@@ -121,21 +122,21 @@ class HBNBCommand(cmd.Cmd):
             print(list)
         else:
             print("** class doesn't exist **")
-       
+
     def do_update(self, arg):
         """
             update and specific dictionary based n the class name
             and the id reference
         """
         arg_list = arg.split()
- 
+
         if validate(arg_list):
             obj_refer = validate(arg_list)
             all_instances = storage.all()
-        
+
             if obj_refer in all_instances.keys():
                 obj = all_instances[obj_refer]
-                
+
                 if len(arg_list) < 3:
                     print("** attribute name missing **")
                     return
@@ -145,14 +146,14 @@ class HBNBCommand(cmd.Cmd):
                     return
 
                 elif arg_list[2] != "id" and arg_list[2] != \
-                     "created_at" and  arg_list[2] != "updated_at":
+                        "created_at" and arg_list[2] != "updated_at":
 
-                     value = arg_list[3].replace('"', "")
-                     obj.__dict__[arg_list[2]] = value
-                     obj.updated_at = datetime.now()
-                     storage.save()
-                     print(obj)
-                     return
+                    value = arg_list[3].replace('"', "")
+                    obj.__dict__[arg_list[2]] = value
+                    obj.updated_at = datetime.now()
+                    storage.save()
+                    print(obj)
+                    return
             else:
                 print("** no instance found **")
                 return
