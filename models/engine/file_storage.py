@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage():
@@ -48,7 +49,7 @@ class FileStorage():
                 list_dict = json.loads(old_dict)
 
                 for key, value in list_dict.items():
-                    x = eval("BaseModel")(**value)
+                    x = eval(value['__class__'])(**value)
                     self.__objects[key] = x
         except IOError:
-           pass
+            pass

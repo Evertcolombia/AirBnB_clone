@@ -39,7 +39,8 @@ class BaseModel():
         """
             strng representation of the  instance
         """
-        st = "[{}] ({}) {}".format(__class__.__name__, self.id, self.__dict__)
+        st = "[{}] ({}) {}".format(self.__class__.__name__, self.id,
+                                   self.__dict__)
         return st
 
     def save(self):
@@ -54,7 +55,7 @@ class BaseModel():
             return a dictionary representation of de obj inctance
         """
         new_d = self.__dict__.copy()
-        new_d["__class__"] = __class__.__name__
+        new_d["__class__"] = self.__class__.__name__
         new_d['created_at'] = self.created_at.isoformat('T')
         new_d['updated_at'] = self.updated_at.isoformat('T')
 
