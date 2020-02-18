@@ -102,7 +102,6 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
-                return
 
     def do_all(self, arg):
         """
@@ -120,6 +119,33 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
        
+    def do_update(self, arg):
+        """split the arg"""
+        """validate the arg"""
+        """get all the intances"""
+        """get an object reference using the splited arg"""
+        
+        """ if object reference in instances.keys()
+                create a single instance from the nstanfes in the
+                obj reference position"""
+                
+                """if the len of the splited is < 3
+                       print(atribute name missing)
+                       return"""
+
+                """elif the len of the splited is < 4
+                       print(value missing)
+                       return"""
+
+                """elif splited[2] != "id" != "created_at and != updated_at
+                       value = splited[3].replace('"', "")
+                       single_intance.__dict__[splited[2]] = value
+                       single_instance.updated_at = datetime.now()
+                       storage.save()
+                       return"""
+        """else
+               print(no instance found)
+               return"""
 
     def help_create(self):
         print("-- Sintax: create class_name")
