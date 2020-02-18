@@ -122,11 +122,11 @@ class HBNBCommand(cmd.Cmd):
             list = []
 
             for key in all_instances:
-                """if arg == "BaseModel" or arg == "User":
+                if arg == "BaseModel" or arg == "User":
                     if type(storage.all()[key]).__name__ == arg:
                         list.append(str(storage.all()[key]))
-                else:"""
-                list.append(str(storage.all()[key]))
+                else:
+                    list.append(str(storage.all()[key]))
             print(list)
 
         else:
