@@ -14,7 +14,7 @@ class User(BaseModel):
        Public Attributes
            attr1 (email): email of the user - string
            attr2 (password): password of the user - string
-           attr3 (firt_name): firts name of the user - string
+           attr3 (first_name): firts name of the user - string
            attr4 (last_name): last name of the user - string
     """
 
@@ -29,6 +29,6 @@ class User(BaseModel):
         else:
             self.email = ""
             self.password = ""
-            self.firts_name = ""
+            self.first_name = ""
             self.last_name = ""
             super().__init__()
