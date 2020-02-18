@@ -4,6 +4,7 @@ This is module define the Cmd class for command line in python
 """
 
 import cmd
+from datetime import datetime
 from models.base_model import BaseModel
 from models import storage
 import json
@@ -23,7 +24,9 @@ def validate(list_args):
         if len_list < 2:
             print("** instance id missing **")
             return
-        return 1
+
+        obj_reference = list_args[0] + '.' + list_args[1]
+        return obj_reference
         
 
 class HBNBCommand(cmd.Cmd):
@@ -73,13 +76,14 @@ class HBNBCommand(cmd.Cmd):
             the class and id of the instance
         """
         arg_list = arg.split()
+        obj_refer = ""
 
-        if validate(arg_list) == 1:
-            obj = arg_list[0] + '.' + arg_list[1]
+        if validate(arg_list):
+            obj_refer = validate(arg_list)
             all_instances = storage.all()       
 
-            if obj  in all_instances.keys():
-                reference = all_instances[obj]
+            if obj_refer in all_instances.keys():
+                reference = all_instances[obj_refer]
                 print(reference)
             else:
                 print("** no instance found **")
@@ -120,32 +124,39 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
        
     def do_update(self, arg):
-        """split the arg"""
-        """validate the arg"""
-        """get all the intances"""
-        """get an object reference using the splited arg"""
+        """
+            update and specific dictionary based n the class name
+            and the id reference
+        """
+        arg_list = arg.split()
+ 
+        if validate(arg_list) == 1:
+            all_instances = storage.all()
+            obj_ref = arg_list[0] + '.' + arg_list[1]
         
-        """ if object reference in instances.keys()
-                create a single instance from the nstanfes in the
-                obj reference position"""
+            if obj_ref in all_instances.keys():
+                obj = all_instances[obj_ref]
                 
-                """if the len of the splited is < 3
-                       print(atribute name missing)
-                       return"""
+                if len(arg_list) < 3:
+                    print("** attribute name missing **")
+                    return
 
-                """elif the len of the splited is < 4
-                       print(value missing)
-                       return"""
+                elif len(arg_list) < 4:
+                    print("** value missing **")
+                    return
 
-                """elif splited[2] != "id" != "created_at and != updated_at
-                       value = splited[3].replace('"', "")
-                       single_intance.__dict__[splited[2]] = value
-                       single_instance.updated_at = datetime.now()
-                       storage.save()
-                       return"""
-        """else
-               print(no instance found)
-               return"""
+                elif arg_list[2] != "id" and arg_list[2] != \
+                     "created_at" and  arg_list[2] != "updated_at":
+
+                     value = arg_list[3].replace('"', "")
+                     obj.__dict__[arg_list[2]] = value
+                     obj.updated_at = datetime.now()
+                     storage.save()
+                     print(obj)
+                     return
+            else:
+                print("** no instance found **")
+                return
 
     def help_create(self):
         print("-- Sintax: create class_name")
@@ -162,6 +173,10 @@ class HBNBCommand(cmd.Cmd):
     def help_all(self):
         print("-- Sintax: all class_name or all")
         print("show all the instances from a class or total")
+
+    def help_update(self):
+        print("-- Sintax: update class_name id_instance attr_name value_name")
+        print("Update an instance based on the class_name and id")
 
     def help_EOF(self):
         """
