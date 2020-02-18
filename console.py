@@ -96,13 +96,12 @@ class HBNBCommand(cmd.Cmd):
         """
         arg_list = arg.split()
 
-        if validate(arg_list) == 1:
-            obj = arg_list[0] + '.' + arg_list[1]
+        if validate(arg_list):
+            obj_refer = validate(arg_list)
             all_instances = storage.all()
 
-            if obj in all_instances.keys():
-                del all_instances[obj]
-                print("deleted")
+            if obj_refer in all_instances.keys():
+                del all_instances[obj_refer]
                 storage.save()
             else:
                 print("** no instance found **")
@@ -130,12 +129,12 @@ class HBNBCommand(cmd.Cmd):
         """
         arg_list = arg.split()
  
-        if validate(arg_list) == 1:
+        if validate(arg_list):
+            obj_refer = validate(arg_list)
             all_instances = storage.all()
-            obj_ref = arg_list[0] + '.' + arg_list[1]
         
-            if obj_ref in all_instances.keys():
-                obj = all_instances[obj_ref]
+            if obj_refer in all_instances.keys():
+                obj = all_instances[obj_refer]
                 
                 if len(arg_list) < 3:
                     print("** attribute name missing **")
