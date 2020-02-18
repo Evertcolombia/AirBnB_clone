@@ -27,4 +27,8 @@ class User(BaseModel):
                 elif (key != '__class__'):
                     setattr(self, key, value)
         else:
+            self.email = ""
+            self.password = ""
+            self.firts_name = ""
+            self.last_name = ""
             super().__init__()
