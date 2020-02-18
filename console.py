@@ -121,8 +121,6 @@ class HBNBCommand(cmd.Cmd):
             print(list)
         else:
             print("** class doesn't exist **")
-<<<<<<< HEAD
-=======
        
     def do_update(self, arg):
         """
@@ -158,7 +156,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
                 return
->>>>>>> conole_uptade
 
     def help_create(self):
         print("-- Sintax: create class_name")
