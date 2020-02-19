@@ -17,12 +17,15 @@ class State(BaseModel):
     """
 
     def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
+
+"""
         if (kwargs):
-            for key, value in kwargs.items():
+           for key, value in kwargs.items():
                 if (key == 'created_at' or key == 'updated_at'):
                     val = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, val)
                 elif (key != '__class__'):
                     setattr(self, key, value)
         else:
-            super().__init__()
+"""
