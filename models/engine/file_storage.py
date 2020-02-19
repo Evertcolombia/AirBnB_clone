@@ -49,7 +49,12 @@ class FileStorage():
                 list_dict = json.loads(old_dict)
 
                 for key, value in list_dict.items():
+<<<<<<< HEAD
                     x = eval(value['__class__'])(**value)
+=======
+                    class_name = key.split('.')
+                    x = eval(class_name[0] + "(**value)")
+>>>>>>> conole_uptade
                     self.__objects[key] = x
         except IOError:
             pass
