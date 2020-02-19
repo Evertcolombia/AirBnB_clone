@@ -176,6 +176,17 @@ class HBNBCommand(cmd.Cmd):
 
         if (arg_list[1] == "all()"):
             self.do_all(arg_list[0])
+        elif (arg_list[1] == "count()"):
+            all_intances = storage.all()
+            cou = 0
+            if arg_list[0] in all_classes:
+                for key in all_instances:
+                    if type(storage.all()[key]).__name__ == arg:
+                        cou += 1
+                print(cou)
+            else:
+                print("** class doesnt exist **")
+                return
         else:
             print("** class doesnt exist **")
             return
