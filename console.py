@@ -154,9 +154,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                     return
 
-                elif arg_list[2] != "id" and arg_list[2] != \
-                        "created_at" and arg_list[2] != "updated_at":
-
+                else:
                     value = arg_list[3].replace('"', "")
                     obj.__dict__[arg_list[2]] = value
                     obj.updated_at = datetime.now()
