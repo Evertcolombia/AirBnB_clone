@@ -169,6 +169,16 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
 
+    def default(self, arg):
+        arg_list = arg.split('.')
+        list = []
+
+        if (arg_list[1] == "all()"):
+            self.do_all(arg_list[0])
+        else:
+            print("** class doesnt exist **")
+            return
+
     def help_create(self):
         print("-- Sintax: create class_name")
         print("creat a and save instance for BaseModel")
