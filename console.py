@@ -221,7 +221,6 @@ class HBNBCommand(cmd.Cmd):
                     """
                     setattr(storage.all()[argh], key, value)
                 storage.all()[argh].save()
-                print(storage.all()[argh])
         else:
             print("** class doesnt exist **")
             return
