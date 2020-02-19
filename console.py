@@ -200,10 +200,22 @@ class HBNBCommand(cmd.Cmd):
             self.do_destroy(st)
 
         elif (arg_list[1][0:6] == 'update'):
-             args = arg_list[1][8:-2]
-             list = args.split('", "')
-             arg = arg_list[0] + " " + list[0] + " " + list[1] + " " + list[2]
-             self.do_update(arg)
+            args = arg_list[1][8:-1]
+            list = args.split('", "')
+            if len(list) == 3:
+                arg = (arg_list[0] + " " +
+                       list[0] + " " +
+                       list[1] + " " + list[2])
+                self.do_update(arg)
+            else:
+                list1 = args.split(", ", 1)
+                dicty = {}
+                dicty = eval(list1[1])
+                for key, value in dicty.items():
+                    arg = (arg_list[0] + " " +
+                           list1[0][:-1] + " " +
+                           key + " " + value)
+                    self.do_update(arg)
 
         else:
             print("** class doesnt exist **")
