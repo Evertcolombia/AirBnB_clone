@@ -6,6 +6,7 @@ This is module define the Cmd class for command line in python
 import cmd
 from datetime import datetime
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 import json
 
@@ -28,6 +29,7 @@ def validate(list_args):
         obj_reference = list_args[0] + '.' + list_args[1]
         return obj_reference
         
+all_classes = ['BaseModel', 'User']
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -59,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             create a new intance of base model and 
             saves it in the file.json
         """
-        if arg and  arg == "BaseModel":
+        if arg and arg in all_classes:
             cl_name = eval(arg + '()')
             print(cl_name.id)
             cl_name.save()
@@ -102,7 +104,6 @@ class HBNBCommand(cmd.Cmd):
 
             if obj in all_instances.keys():
                 del all_instances[obj]
-                print("deleted")
                 storage.save()
             else:
                 print("** no instance found **")
@@ -114,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
         """
         all_instances = storage.all()
 
-        if len(arg) == 0 or arg == "BaseModel":
+        if len(arg) == 0 or arg in all_classes:
             list = []
 
             for key in all_instances:
