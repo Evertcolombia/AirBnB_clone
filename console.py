@@ -30,8 +30,9 @@ def validate(list_args):
 
         obj_reference = list_args[0] + '.' + list_args[1]
         return obj_reference
-        
+
 all_classes = ['BaseModel', 'User']
+
 
 class HBNBCommand(cmd.Cmd):
     """
