@@ -193,8 +193,12 @@ class HBNBCommand(cmd.Cmd):
             id = arg_list[1][6:-2]
             st = (arg_list[0] + " " + id)
             self.do_show(st)
-            
-            
+
+        elif (arg_list[1][0:7] == 'destroy'):
+            id = arg_list[1][9:-2]
+            st = (arg_list[0] + " " + id)
+            self.do_destroy(st)
+
         else:
             print("** class doesnt exist **")
             return
