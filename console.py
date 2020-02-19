@@ -64,6 +64,7 @@ class HBNBCommand(cmd.Cmd):
         if arg and arg in all_classes:
             cl_name = eval(arg + '()')
             print(cl_name.id)
+            print(cl_name)
             cl_name.save()
 
         elif not arg:
