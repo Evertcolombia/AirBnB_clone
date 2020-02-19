@@ -220,7 +220,8 @@ class HBNBCommand(cmd.Cmd):
                     self.do_update(arg)
                     """
                     setattr(storage.all()[argh], key, value)
-                    storage.all()[argh].save()
+                storage.all()[argh].save()
+                print(storage.all()[argh])
         else:
             print("** class doesnt exist **")
             return
