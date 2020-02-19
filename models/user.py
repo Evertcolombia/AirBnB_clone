@@ -9,12 +9,11 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-<<<<<<< HEAD
     email = ""
     password = ""
     first_name = ""
     last_name = ""
-=======
+
     """Class User
 
        Public Attributes
@@ -34,4 +33,3 @@ class User(BaseModel):
                     setattr(self, key, value)
         else:
             super().__init__()
->>>>>>> 860d28662bfa2091e8ec6eee159633cc20a9952c
