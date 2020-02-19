@@ -199,6 +199,12 @@ class HBNBCommand(cmd.Cmd):
             st = (arg_list[0] + " " + id)
             self.do_destroy(st)
 
+        elif (arg_list[1][0:6] == 'update'):
+             args = arg_list[1][8:-2]
+             list = args.split('", "')
+             arg = arg_list[0] + " " + list[0] + " " + list[1] + " " + list[2]
+             self.do_update(arg)
+
         else:
             print("** class doesnt exist **")
             return
