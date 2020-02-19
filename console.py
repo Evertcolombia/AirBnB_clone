@@ -212,11 +212,15 @@ class HBNBCommand(cmd.Cmd):
                 dicty = {}
                 dicty = eval(list1[1])
                 for key, value in dicty.items():
+                    argh = arg_list[0] + "." + list1[0][:-1]
+                    """
                     arg = (arg_list[0] + " " +
                            list1[0][:-1] + " " +
                            key + " " + value)
                     self.do_update(arg)
-
+                    """
+                    setattr(storage.all()[argh], key, value)
+                    storage.all()[argh].save()
         else:
             print("** class doesnt exist **")
             return
