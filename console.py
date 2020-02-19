@@ -12,7 +12,7 @@ from models.state import State
 from models.city import City
 from models.user import User
 from models.amenity import Amenity
-from models.reiview import Review
+from models.review import Review
 from models import storage
 
 
@@ -35,7 +35,8 @@ def validate(list_args):
         obj_reference = list_args[0] + '.' + list_args[1]
         return obj_reference
 
-all_classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Review', 'Place']
+all_classes = ['BaseModel', 'User', 'State',
+               'City', 'Amenity', 'Review', 'Place']
 
 
 class HBNBCommand(cmd.Cmd):
