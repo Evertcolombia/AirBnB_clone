@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module initialize the storage instance and reload the objects
+This module initialize the storage instance and reload all
 """
 from models import base_model
 from models import user
