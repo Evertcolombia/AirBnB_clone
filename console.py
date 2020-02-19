@@ -4,11 +4,16 @@ This is module define the Cmd class for command line in python
 """
 
 import cmd
+import json
 from datetime import datetime
 from models.base_model import BaseModel
+from models.place import Place
+from models.state import State
+from models.city import City
 from models.user import User
+from models.amenity import Amenity
+from models.reiview import Review
 from models import storage
-import json
 
 
 def validate(list_args):
@@ -19,8 +24,7 @@ def validate(list_args):
             print("** class name missing **")
             return
 
-        if (list_args[0] != "BaseModel" and
-                list_args[0] != "User"):
+        if (list_args[0] not in all_classes):
             print("** class doesn't exist **")
             return
 
@@ -31,7 +35,7 @@ def validate(list_args):
         obj_reference = list_args[0] + '.' + list_args[1]
         return obj_reference
 
-all_classes = ['BaseModel', 'User']
+all_classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Review', 'Place']
 
 
 class HBNBCommand(cmd.Cmd):
