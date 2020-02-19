@@ -13,8 +13,8 @@ class BaseModel():
 
         Public attributes
             attr1 (id):  to count instances
-            attr2 (create_at): control de date time for instances
-            attr3 (update_at): control de ptade datetime
+            attr2 (created_at): control de date time for instances
+            attr3 (updated_at): control de ptade datetime
     """
 
     def __init__(self, *args, **kwargs):
