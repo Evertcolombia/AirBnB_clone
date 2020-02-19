@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"BaseModel.4f930a15-e504-4df5-bea7-3a0eac82d7f2": {"updated_at": "2020-02-19T00:46:59.900412", "id": "4f930a15-e504-4df5-bea7-3a0eac82d7f2", "created_at": "2020-02-19T00:46:59.900108", "__class__": "BaseModel"}}
+=======
+{"BaseModel.a3a987f7-019a-4141-97fe-4748a2818baa": {"updated_at": "2020-02-18T23:52:16.284197", "name": "Holberton", "__class__": "BaseModel", "created_at": "2020-02-18T23:52:16.284182", "my_number": 89, "id": "a3a987f7-019a-4141-97fe-4748a2818baa"}}
+>>>>>>> 860d28662bfa2091e8ec6eee159633cc20a9952c
