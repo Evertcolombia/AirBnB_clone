@@ -30,12 +30,8 @@ def validate(list_args):
 
         obj_reference = list_args[0] + '.' + list_args[1]
         return obj_reference
-<<<<<<< HEAD
-
-=======
         
 all_classes = ['BaseModel', 'User']
->>>>>>> conole_uptade
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -67,14 +63,9 @@ class HBNBCommand(cmd.Cmd):
             create a new intance of base model and
             saves it in the file.json
         """
-<<<<<<< HEAD
-        if arg and (arg == "BaseModel" or arg == "User"):
-=======
         if arg and arg in all_classes:
->>>>>>> conole_uptade
             cl_name = eval(arg + '()')
             print(cl_name.id)
-            print(cl_name)
             cl_name.save()
 
         elif not arg:
@@ -113,13 +104,8 @@ class HBNBCommand(cmd.Cmd):
             obj_refer = validate(arg_list)
             all_instances = storage.all()
 
-<<<<<<< HEAD
             if obj_refer in all_instances.keys():
                 del all_instances[obj_refer]
-=======
-            if obj in all_instances.keys():
-                del all_instances[obj]
->>>>>>> conole_uptade
                 storage.save()
             else:
                 print("** no instance found **")
@@ -131,17 +117,11 @@ class HBNBCommand(cmd.Cmd):
         """
         all_instances = storage.all()
 
-<<<<<<< HEAD
-        if (len(arg) == 0 or
-                arg == "BaseModel" or
-                arg == "User"):
-=======
         if len(arg) == 0 or arg in all_classes:
->>>>>>> conole_uptade
             list = []
 
             for key in all_instances:
-                if arg == "BaseModel" or arg == "User":
+                if arg in all_classes:
                     if type(storage.all()[key]).__name__ == arg:
                         list.append(str(storage.all()[key]))
                 else:
