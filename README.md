@@ -74,6 +74,24 @@ EOF  help  quit
 (hbnb) 
 $
 ```
+## Files and Directories 
+
+_Project have the next Directories and files_
+
+* models/ - containg all the class declaration files
+* models/engine/ - containg the filestorage files
+* tests/ - containg all the test files for the project
+* console.py - this is a python3 executable file containing the command interpreter code
+* file_storage.py - this is a python3 file cointaining the Filestorage class
+* base_model.py - this is a python3 file that contain the BaseModel class
+* user.py - this is a python3 file that contain the User class
+* state.py - this is a python3 file that contain the State class
+* city.py - this is a python3 file that contain the City class
+* amenity.py - this is a python3 file that contain the Amenity class
+* place.py - this is a python3 file that contain the Place class
+* review.py - this is a python3 file that contain the Review class
+* test_... - unittest python3 files for each of the project's python3 files
+
 ## buildt with 
 
 _Project constructions tools_
