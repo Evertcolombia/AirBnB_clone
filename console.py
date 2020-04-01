@@ -4,6 +4,7 @@ This is module define the Cmd class for command line in python
 """
 
 import cmd
+import shlex
 import json
 from datetime import datetime
 from models.base_model import BaseModel
@@ -69,14 +70,30 @@ class HBNBCommand(cmd.Cmd):
             create a new intance of base model and
             saves it in the file.json
         """
+        if len(arg) == 0:
+            print('*** class name missing ***')
+            return
+
         try:
-            if not arg:
-                raise SyntaxError()
-            my_list = line.split(" ")
-            cl_name = eval("{}()".format(my_list[0]))
+            my_list = shlex.split(arg)
+            cl_name = eval("{}".format(my_list[0]))()
+
+            for el in my_list[1:]:
+                key, value = el.split('=')[0], el.split("=")[1]
+                value = value.replace("\"", "")
+                value = value.replace("_", " ")
+
+                if "." in value:
+                        value = float(value)
+                else:
+                    try:
+                        value = int(value)
+                    except:
+                        pass
+                setattr(cl_name, key, value)
+                    
             print(cl_name.id)
             cl_name.save()
-
         except SyntaxError:
             print("** class name missing **")
 
