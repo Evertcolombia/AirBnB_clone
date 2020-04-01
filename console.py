@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         command line for A&B project
     """
 
-    prompt = '(hbnb) '
+    prompt = ('(hbnb) ')
 
     def emptyline(self):
         """ Empty line """
@@ -69,15 +69,18 @@ class HBNBCommand(cmd.Cmd):
             create a new intance of base model and
             saves it in the file.json
         """
-        if arg and arg in all_classes:
-            cl_name = eval(arg + '()')
+        try:
+            if not arg:
+                raise SyntaxError()
+            my_list = line.split(" ")
+            cl_name = eval("{}()".format(my_list[0]))
             print(cl_name.id)
             cl_name.save()
 
-        elif not arg:
+        except SyntaxError:
             print("** class name missing **")
 
-        else:
+        except NameError:
             print("** class doesn't exist **")
 
     def do_show(self, arg):
